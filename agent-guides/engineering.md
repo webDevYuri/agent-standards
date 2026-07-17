@@ -1,3 +1,9 @@
+<!--
+This guide defines the engineering principles used across all implementation work.
+It covers scope control, simple and maintainable solutions, context-first investigation,
+URL-driven route discovery, debugging, and proportionate verification.
+-->
+
 # Engineering Guide
 
 ## Section Routing

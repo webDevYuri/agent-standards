@@ -263,6 +263,21 @@
             color: var(--muted);
         }
 
+        .agent-notice {
+            margin: 28px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .agent-notice strong {
+            color: var(--text);
+        }
+
+        .agent-notice a {
+            font-weight: 700;
+            text-underline-offset: 3px;
+        }
+
         .cta {
             background: var(--accent);
         }
@@ -451,6 +466,14 @@
                     <p class="note">
                         Enough structure to keep agents disciplined. Not enough structure to
                         require an architecture committee.
+                    </p>
+
+                    <p class="agent-notice">
+                        <strong>Using Claude Code, Gemini CLI, or another coding agent?</strong><br />
+                        You may need to rename <code>AGENTS.md</code> to the instruction filename
+                        expected by your tool (for example, <code>CLAUDE.md</code> or
+                        <code>GEMINI.md</code>).
+                        <a href="https://github.com/webDevYuri/agent-standards">Learn more</a>
                     </p>
                 </div>
 

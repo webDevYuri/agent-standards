@@ -1,3 +1,9 @@
+<!--
+This guide applies to backend code such as APIs, authentication, validation,
+databases, migrations, queues, jobs, integrations, and server configuration.
+It defines safe implementation patterns and the checks required for backend changes.
+-->
+
 # Backend Development Guide
 
 ## Section Routing

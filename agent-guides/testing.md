@@ -1,3 +1,9 @@
+<!--
+This guide defines how API endpoints must be verified in a local environment.
+It covers required scenarios, risk-based checks, the execution loop,
+and the evidence agents should report without contacting production systems.
+-->
+
 # API Endpoint Verification Guide
 
 ## Section Routing

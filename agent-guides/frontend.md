@@ -1,8 +1,14 @@
+<!--
+This guide applies to frontend components, state, rendering, data fetching,
+navigation, browser behavior, security, performance, and framework-specific code.
+Visual and UX work is routed from here to the dedicated UI/UX standards.
+-->
+
 # Frontend Development Guide
 
 ## Section Routing
 
-* **Component structure or logic:** [Architecture and Code Style](#architecture-and-code-style) and the applicable [React and Next.js](#react-and-nextjs) or [Angular](#angular) section.
+* **Component structure or logic:** [Architecture and Code Style](#architecture-and-code-style), plus the applicable framework section.
 * **State or rendering:** [State and Rendering](#state-and-rendering), plus the applicable framework section.
 * **Data fetching or API consumption:** [Data Fetching and API Contracts](#data-fetching-and-api-contracts).
 * **API contract change:** [Data Fetching and API Contracts](#data-fetching-and-api-contracts), backend [API Design and Contracts](backend.md#api-design-and-contracts), and [Postman Collection](backend.md#postman-collection) when one exists.
@@ -15,18 +21,40 @@
 
 * Keep components focused, readable, and easy to test.
 * Separate presentation, state, data access, and business rules in proportion to application complexity.
+* Preserve established project conventions. In a new project, use framework-standard patterns and add structure only when current requirements justify it.
 
 ## React and Next.js
 
 * Preserve clear server and client component boundaries.
 * Do not move logic or data fetching to the client unless browser execution is necessary.
-* Follow configured loading, error, caching, form, and navigation patterns; otherwise use framework-standard behavior.
+* Follow configured loading, error, caching, form, and navigation patterns.
 * Avoid unnecessary effects, duplicate state, and preventable re-renders.
 
 ## Angular
 
 * Keep components, services, guards, interceptors, and modules in their established roles; keep complex logic out of templates.
-* Use configured dependency injection, forms, and observable patterns, or Angular standards in a new project.
+* Use configured dependency injection, forms, and observable patterns.
+
+## Vue and Nuxt
+
+* Use one established Composition API or Options API style consistently; do not mix styles without a clear need.
+* Keep reusable stateful logic in focused composables and visual structure in components.
+* In Nuxt, preserve server and client boundaries and use its configured data-fetching, routing, and rendering patterns.
+
+## Svelte and SvelteKit
+
+* Keep state close to where it is used, derive values instead of synchronizing duplicate state, and reserve effects for external side effects.
+* In SvelteKit, follow its load, form action, routing, and server-module patterns; keep secrets and server-only logic out of browser code.
+
+## Astro
+
+* Prefer static or server-rendered HTML by default and hydrate only components that require browser interactivity.
+* Choose client directives deliberately, keep islands focused, and avoid shipping framework JavaScript for static content.
+* Keep frontmatter and server-only logic separate from scripts that run in the browser.
+
+## Other Frontend Frameworks
+
+* Apply the shared frontend rules and use established project conventions or, for a new project, the framework's standard patterns.
 
 ## UI and UX Routing
 

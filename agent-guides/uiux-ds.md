@@ -1,3 +1,9 @@
+<!--
+This guide applies to visual design, layout, styling, usability, and interaction work.
+It keeps interfaces consistent with the existing design system while covering
+responsive behavior, accessibility, content, motion, and final design review.
+-->
+
 # UI/UX Design Standards
 
 ## Section Routing

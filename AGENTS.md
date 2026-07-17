@@ -1,3 +1,9 @@
+<!--
+This is the primary instruction file that coding agents should read first.
+It defines the global safety and working rules that apply to every task,
+then routes the agent to only the task-specific guides and sections it needs.
+-->
+
 # AGENTS.md
 
 ## Purpose

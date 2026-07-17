@@ -1,3 +1,9 @@
+<!--
+This is the public overview and setup guide for Agent Standards.
+It explains what the repository contains, how to add it to a project,
+and which primary instruction filename different coding agents may expect.
+-->
+
 # Agent Standards
 
 A practical, token-efficient rulebook for AI coding agents.
@@ -29,31 +35,18 @@ Copy the files into the root of your project while preserving the existing folde
 
 Your coding agent should read `AGENTS.md` first. It will route the agent to the relevant guide and sections based on the current task.
 
-## Project-Specific Notes
+## Supported Agents
 
-Before using these standards, open `AGENTS.md` and find:
+You may need to rename the primary instruction file depending on the coding agent you use.
 
-```md
-## Project-Specific Notes
-```
+| Agent | Instruction File |
+|-------|------------------|
+| Codex | `AGENTS.md` |
+| Cursor | `AGENTS.md` |
+| Claude Code | `CLAUDE.md` |
+| Gemini CLI | `GEMINI.md` |
 
-Replace the contents of that section with information specific to your project.
-
-This may include:
-
-- Tech stack
-- Project structure
-- Coding conventions
-- Development commands
-- Local environment setup
-- Installed UI component libraries
-- Important architectural decisions
-- Testing commands
-- Database restrictions
-- External service restrictions
-- Project-specific safety rules
-
-Do not keep the default notes when they do not accurately describe your project.
+Check your coding agent's documentation if it requires a different instruction filename.
 
 ## Important
 
