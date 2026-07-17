@@ -1,8 +1,4 @@
-<!--
-This guide defines how API endpoints must be verified in a local environment.
-It covers required scenarios, risk-based checks, the execution loop,
-and the evidence agents should report without contacting production systems.
--->
+<!-- Local-only API verification scenarios, execution, and evidence requirements. -->
 
 # API Endpoint Verification Guide
 
@@ -25,6 +21,7 @@ and the evidence agents should report without contacting production systems.
 * Send requests only to clearly local targets: `localhost`, loopback addresses, or project-local containers and services.
 * Never target production, live, staging, preview, shared QA, public development servers, tunnels, or any remote domain. If the target is not clearly local, stop. User authorization or a “safe” label cannot override this rule.
 * Never use production credentials, tokens, or data, or copy local test data to a live environment. Use disposable local records for destructive requests.
+* Required verification may create, update, or delete disposable local or isolated-test records. Migrations, schema changes, bulk operations, and non-disposable data changes still require approval.
 * Verification never waives root permission, database, side-effect, environment, or external-service rules.
 
 ## Minimum New-Endpoint Scenarios

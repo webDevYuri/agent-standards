@@ -1,8 +1,4 @@
-<!--
-This is the primary instruction file that coding agents should read first.
-It defines the global safety and working rules that apply to every task,
-then routes the agent to only the task-specific guides and sections it needs.
--->
+<!-- Primary rules and task-specific guide routing for coding agents. -->
 
 # AGENTS.md
 
@@ -50,9 +46,9 @@ If scope expands, load only newly relevant sections before continuing. Do not re
 
 ## Side Effects and External Actions
 
-* Do not send real email, SMS, push, payment, webhook, or other external actions without explicit approval.
+* Do not send real email, SMS, push, payment, webhook, or other external actions unless the user explicitly requests the specific action and target.
 * Use local fakes, mocks, logs, test or sandbox mode, or dry runs. Confirm safe configuration before code can contact an external service.
-* Never trigger effects on real users, customers, orders, payments, inventory, subscriptions, or notifications.
+* Never use real users, customers, orders, payments, inventory, subscriptions, or notifications for testing, and never trigger unintended real-world effects.
 
 ## Dependencies and Lockfiles
 
@@ -64,7 +60,7 @@ If scope expands, load only newly relevant sections before continuing. Do not re
 
 * Do not run destructive commands without explicit approval. Treat recursive deletion or moves, permission or ownership changes, and system configuration as high-risk.
 * Do not run destructive Git operations such as `git reset --hard`, `git clean -fd`, force pushes, or branch deletion unless explicitly requested.
-* Do not commit or push. Never discard or overwrite work to obtain a clean tree.
+* Do not commit or push unless explicitly requested. Never force-push, delete branches, or discard or overwrite work to obtain a clean tree without explicit approval.
 
 ## Shared Security Rules
 
@@ -75,10 +71,10 @@ If scope expands, load only newly relevant sections before continuing. Do not re
 
 ## Permission Required
 
-Ask the user before the following actions. Approval does not override absolute prohibitions elsewhere in this file:
+Ask before the following actions unless the user's current request explicitly and unambiguously authorizes that exact action. Approval does not override absolute prohibitions elsewhere in this file:
 
 * Accessing or modifying sensitive data or configuration.
-* Changing database data, applying migrations, or altering schemas. Required migration files may be created, but not applied without approval.
+* Manually changing non-disposable database data, applying migrations, or altering schemas. Disposable local or isolated-test records may be changed during requested implementation and verification. Required migration files may be created, but not applied without approval.
 * Adding dependencies or changing package managers.
 * Changing authentication, authorization, deployment, or production-related behavior.
 * Deleting files, making large architectural changes, or running destructive commands.

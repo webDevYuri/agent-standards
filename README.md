@@ -1,8 +1,4 @@
-<!--
-This is the public overview and setup guide for Agent Standards.
-It explains what the repository contains, how to add it to a project,
-and which primary instruction filename different coding agents may expect.
--->
+<!-- Public overview, setup instructions, and supported-agent guidance. -->
 
 # Agent Standards
 

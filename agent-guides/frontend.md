@@ -1,8 +1,4 @@
-<!--
-This guide applies to frontend components, state, rendering, data fetching,
-navigation, browser behavior, security, performance, and framework-specific code.
-Visual and UX work is routed from here to the dedicated UI/UX standards.
--->
+<!-- Frontend guidance for framework code, browser behavior, security, and verification. -->
 
 # Frontend Development Guide
 
@@ -52,10 +48,6 @@ Visual and UX work is routed from here to the dedicated UI/UX standards.
 * Choose client directives deliberately, keep islands focused, and avoid shipping framework JavaScript for static content.
 * Keep frontmatter and server-only logic separate from scripts that run in the browser.
 
-## Other Frontend Frameworks
-
-* Apply the shared frontend rules and use established project conventions or, for a new project, the framework's standard patterns.
-
 ## UI and UX Routing
 
 * Before creating UI, inspect existing components, design tokens, patterns, and installed UI libraries.
@@ -93,4 +85,4 @@ Visual and UX work is routed from here to the dedicated UI/UX standards.
 
 ## Verification
 
-Run relevant unit, component, integration, end-to-end, type, lint, and local-build checks. Test affected API success and failure paths locally in the browser. For visual work, complete the UI/UX [Final Design Review](uiux-ds.md#final-design-review).
+Run relevant unit, component, integration, end-to-end, type, lint, and local-build checks. For frontend API work, verify affected UI success and failure behavior against a clearly local API or the project's established test setup. For visual work, complete the UI/UX [Final Design Review](uiux-ds.md#final-design-review).

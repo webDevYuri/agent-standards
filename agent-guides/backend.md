@@ -1,14 +1,10 @@
-<!--
-This guide applies to backend code such as APIs, authentication, validation,
-databases, migrations, queues, jobs, integrations, and server configuration.
-It defines safe implementation patterns and the checks required for backend changes.
--->
+<!-- Backend guidance for APIs, data, security, integrations, and server configuration. -->
 
 # Backend Development Guide
 
 ## Section Routing
 
-* **Controller, service, queue, or job structure:** [Architecture and Code Style](#architecture-and-code-style) and the applicable [Laravel](#laravel) or [Node.js and Express](#nodejs-and-express) section.
+* **Controller, service, queue, or job structure:** [Architecture and Code Style](#architecture-and-code-style), plus the applicable framework section when present.
 * **Route, contract, status, or response:** [API Design and Contracts](#api-design-and-contracts).
 * **Authentication, authorization, ownership, or privileged behavior:** [Authentication and Authorization](#authentication-and-authorization) and, when relevant, [Backend Security](#backend-security).
 * **Input, upload, error, or abuse protection:** [Validation, Errors, and Abuse Protection](#validation-errors-and-abuse-protection).
@@ -16,12 +12,14 @@ It defines safe implementation patterns and the checks required for backend chan
 * **Query, model, write, or transaction:** [Database Safety](#database-safety).
 * **Migration:** [Database Safety](#database-safety) and [Migration Rules](#migration-rules).
 * **Webhook or server integration:** [Backend Security](#backend-security), plus relevant API sections when endpoint-facing.
+* **Server configuration:** [Server Configuration](#server-configuration) and [Backend Security](#backend-security), plus [Verification](#verification) when behavior changes.
 * **Backend checks:** The affected section and [Verification](#verification).
 * **Frontend-consumed contract:** Also read frontend [Data Fetching and API Contracts](frontend.md#data-fetching-and-api-contracts).
 
 ## Architecture and Code Style
 
-* Keep controllers and route handlers focused on transport. Place validation, authorization, business logic, queues, and jobs in their established layers, or simple conventional locations in a new project.
+* Keep controllers and route handlers focused on transport. Place validation, authorization, business logic, queues, and jobs in their established layers.
+* Preserve established framework conventions. In a new project, use framework-standard patterns and add layers only when current requirements justify them.
 
 ## Laravel
 
@@ -30,7 +28,7 @@ It defines safe implementation patterns and the checks required for backend chan
 
 ## Node.js and Express
 
-* Use established controllers, services, middleware, validators, asynchronous behavior, and error handling; otherwise use conventional Express patterns proportionate to the project.
+* Use established controllers, services, middleware, validators, asynchronous behavior, and error handling.
 
 ## API Endpoints
 
@@ -84,6 +82,11 @@ When a Postman collection exists, maintain it as part of the API; it supplements
 ## Backend Security
 
 * Verify webhook signatures and replay protections using the established approach when present, or the provider/framework-supported secure approach for a new integration.
+
+## Server Configuration
+
+* Preserve established configuration patterns and safe defaults. Keep secrets out of committed files and client-visible output.
+* Make environment, deployment, or infrastructure behavior changes only when explicitly authorized, and verify them in a safe local or isolated environment.
 
 ## Verification
 
