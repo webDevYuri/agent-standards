@@ -15,16 +15,12 @@
 
 ## Architecture and Code Style
 
-* Keep components focused, readable, and easy to test.
-* Separate presentation, state, data access, and business rules in proportion to application complexity.
-* Preserve established project conventions. In a new project, use framework-standard patterns and add structure only when current requirements justify it.
+* Give components clear responsibilities; separate complex state, data access, and business rules when useful. Avoid both giant components and fragmenting simple views without a reuse or responsibility benefit.
+* Follow project conventions; in a new project, add only framework-standard structure needed now.
 
 ## React and Next.js
 
-* Preserve clear server and client component boundaries.
-* Do not move logic or data fetching to the client unless browser execution is necessary.
-* Follow configured loading, error, caching, form, and navigation patterns.
-* Avoid unnecessary effects, duplicate state, and preventable re-renders.
+* Preserve server/client boundaries; move logic or fetching to the client only when browser execution is needed. Follow configured loading, error, caching, form, and navigation patterns.
 
 ## Angular
 
@@ -33,29 +29,24 @@
 
 ## Vue and Nuxt
 
-* Use one established Composition API or Options API style consistently; do not mix styles without a clear need.
-* Keep reusable stateful logic in focused composables and visual structure in components.
-* In Nuxt, preserve server and client boundaries and use its configured data-fetching, routing, and rendering patterns.
+* Follow the established Composition API or Options API style. Keep reusable stateful logic in focused composables and visuals in components.
+* In Nuxt, preserve server/client boundaries and configured fetching, routing, and rendering patterns.
 
 ## Svelte and SvelteKit
 
-* Keep state close to where it is used, derive values instead of synchronizing duplicate state, and reserve effects for external side effects.
-* In SvelteKit, follow its load, form action, routing, and server-module patterns; keep secrets and server-only logic out of browser code.
+* In SvelteKit, follow load, form action, routing, and server-module patterns; keep server-only logic out of browser code.
 
 ## Astro
 
-* Prefer static or server-rendered HTML by default and hydrate only components that require browser interactivity.
-* Choose client directives deliberately, keep islands focused, and avoid shipping framework JavaScript for static content.
-* Keep frontmatter and server-only logic separate from scripts that run in the browser.
+* Prefer static/server-rendered HTML; hydrate only interactive islands with appropriate client directives. Keep frontmatter and server-only logic separate from browser scripts.
 
 ## UI and UX Routing
 
-* Before creating UI, inspect existing components, design tokens, patterns, and installed UI libraries.
 * Visual or UX changes must load relevant [`uiux-ds.md`](uiux-ds.md#section-routing) sections; non-visual frontend work must not.
 
 ## Navigation and URLs
 
-* Use established, predictable routes based on user-facing concepts; in a new project, use concise, consistent, readable segments without unclear abbreviations.
+* Use predictable routes based on user-facing concepts, with consistent readable segments.
 * Never put secrets, sensitive data, or unnecessarily revealing internal identifiers in URLs.
 * When routes change, update affected navigation, links, tests, and examples.
 
@@ -63,12 +54,14 @@
 
 ### State and Rendering
 
-* Avoid unnecessary global state. Handle loading, empty, error, retry, expired-session, and duplicate-submission behavior deliberately.
+* Keep one authoritative owner for each state near its consumers; derive values instead of synchronizing duplicates. Use global state only for genuinely shared needs and effects for external synchronization.
+* Handle relevant loading, empty, success, error, retry, expired-session, and duplicate-submission behavior. Preserve input on recoverable failures; prevent stale responses or races from overwriting newer state.
 
 ### Data Fetching and API Contracts
 
 * Preserve established contracts. For new or changed contracts, read backend [API Design and Contracts](backend.md#api-design-and-contracts) and keep both sides aligned.
 * Translate backend codes into safe, actionable user messages; never show raw server or database errors.
+* Use client validation for feedback and server validation for correctness. Reconcile mutations with authoritative data; use optimistic updates only with clear failure recovery.
 
 ### Browser Security
 

@@ -10,7 +10,7 @@
 * **Input, upload, error, or abuse protection:** [Validation, Errors, and Abuse Protection](#validation-errors-and-abuse-protection).
 * **New endpoint, endpoint bug, or runtime change:** The relevant API sections and [API Endpoint Verification](#api-endpoint-verification); add [Postman Collection](#postman-collection) when one exists.
 * **Query, model, write, or transaction:** [Database Safety](#database-safety).
-* **Migration:** [Database Safety](#database-safety) and [Migration Rules](#migration-rules).
+* **Schema or migration:** [Domain and Schema Design](#domain-and-schema-design), [Database Safety](#database-safety), and [Migration Rules](#migration-rules).
 * **Webhook or server integration:** [Backend Security](#backend-security), plus relevant API sections when endpoint-facing.
 * **Server configuration:** [Server Configuration](#server-configuration) and [Backend Security](#backend-security), plus [Verification](#verification) when behavior changes.
 * **Backend checks:** The affected section and [Verification](#verification).
@@ -18,13 +18,11 @@
 
 ## Architecture and Code Style
 
-* Keep controllers and route handlers focused on transport. Place validation, authorization, business logic, queues, and jobs in their established layers.
-* Preserve established framework conventions. In a new project, use framework-standard patterns and add layers only when current requirements justify them.
+* Keep transport handling focused and business rules under clear ownership in established layers. Simple behavior can stay simple; extract layers only for actual complexity, reuse, or responsibility boundaries.
 
 ## Laravel
 
-* Use Form Requests for validation when appropriate.
-* Use Policies, Gates, Middleware, Resources, Services, Jobs, and Events where they fit established architecture.
+* Use Form Requests, Policies, Gates, Middleware, Resources, Services, Jobs, and Events where appropriate to established architecture.
 
 ## Node.js and Express
 
@@ -34,20 +32,21 @@
 
 ### API Design and Contracts
 
-* Keep the API cohesive and minimal. Prefer resource-oriented routes, extending a suitable endpoint, or query parameters; never combine unrelated operations or weaken HTTP semantics to reduce route count.
-* Return the correct status, including `429 Too Many Requests` for rate limits. Never encode an error only in a successful response body.
-* Preserve established response and pagination formats. Return safe, useful errors with a human-readable `message` and stable machine `code`; for a new API, use descriptive uppercase snake case such as `OTP_RESEND_NOT_READY`.
-* Include retry timing, timestamps, flow context, or state flags only when clients need them. Expose public identifiers deliberately and consistently, never privileged or implementation-only identifiers.
-* Coordinate client-visible contract changes with the frontend and update affected tests or documentation.
+* Use domain resources and HTTP methods predictably; explicit commands are appropriate for workflows that do not fit CRUD. Extend suitable endpoints without combining unrelated operations or exposing implementation details.
+* Use correct statuses, including `429` for rate limits; never encode failure only in a successful response body.
+* Preserve response and pagination conventions. Errors need a safe `message` and stable machine `code`; new APIs use descriptive uppercase snake case.
+* Bound collections; support filtering, sorting, and pagination as needed. Include public identifiers, retry timing, or state context only when clients need them.
+* Coordinate contract changes with consumers, tests, documentation, and existing Postman collections. Add versioning only for a demonstrated compatibility need.
 
 ### Authentication and Authorization
 
-* Apply authentication middleware when required and authorization checks wherever permissions or resource ownership matter.
-* Keep privileged operations server-side; frontend checks are not security controls.
+* Authentication establishes identity; separately authorize each relevant action and resource, including ownership and tenant boundaries. Frontend checks are not security controls.
+* Derive authoritative roles, prices, ownership, calculated values, and allowed state transitions on the server; do not trust client assertions.
 
 ### Validation, Errors, and Abuse Protection
 
-* Validate every used parameter, body field, header, and upload. Apply rate limits where abuse is possible.
+* Validate used parameters, fields, headers, and uploads at boundaries; allowlist writable fields and rate-limit abuse-prone operations.
+* Validate upload type, size, and storage; constrain redirects or outbound destinations when user-controlled.
 * Handle missing records, invalid input, unauthorized access, duplicates, expired tokens, and upstream failures safely through the project’s error format.
 
 ## API Endpoint Verification
@@ -57,31 +56,36 @@
 
 ## Postman Collection
 
-When a Postman collection exists, maintain it as part of the API; it supplements but never replaces [local endpoint verification](#api-endpoint-verification).
+Maintain an existing collection with the API; it never replaces [local endpoint verification](#api-endpoint-verification).
 
-* Update changed, added, renamed, or removed endpoints, including URLs, methods, headers, authorization, parameters, payloads, and examples.
-* Organize by resource or feature with descriptive resource and scenario names. Keep each saved request easy to run with minimal manual editing: document brief prerequisites and expected results, use safe local sample values, and avoid hidden request-order dependencies unless the workflow requires sequencing.
-* Match the endpoint contract rather than personal preference: use `form-data` for multipart or uploads, raw JSON for `application/json`, and URL encoding only when required. Let Postman generate multipart boundaries.
-* Keep a happy path for each endpoint. Add focused auth, validation, or failure cases only when useful. Saved error or business-state examples must include expected status and full response payload with `message`, `code`, and relevant context; tests must assert status and `code`.
-* Use variables only for values that vary. Keep committed values empty or fake; never store credentials, tokens, personal data, or private URLs.
-* Keep scripts short and transparent; carry only necessary temporary sequence values and avoid automation that obscures manual testing.
+* Update affected URLs, methods, headers, auth, parameters, payloads, and examples. Group by resource or feature with descriptive scenario names, brief prerequisites, expected results, and safe local samples; avoid hidden sequencing.
+* Match the contract: multipart `form-data` for uploads, raw JSON for `application/json`, URL encoding only when required. Let Postman generate multipart boundaries.
+* Keep each endpoint's happy path and useful failure cases. Error/business-state examples need expected status and full payload with `message`, `code`, and relevant context; tests assert status and `code`.
+* Use variables only for varying values; commit empty or fake values, never credentials, tokens, personal data, or private URLs. Keep scripts transparent and temporary sequence state minimal.
+
+## Domain and Schema Design
+
+* Model entities, cardinality, ownership, lifecycle, and invariants before columns. Choose domain-appropriate types, keys, nullability, and meaningful timestamps; enforce relational integrity and uniqueness with database constraints.
+* Normalize for coherent ownership; store derived or denormalized data only for a concrete need with a consistency strategy. Do not normalize mechanically at the expense of common operations.
+* Choose indexes for expected filtering, joins, sorting, and uniqueness, balancing query benefit against write and storage costs; use query evidence when optimizing.
 
 ## Database Safety
 
 * Use only local or isolated test databases for database work.
 * Prefer migrations, seeders, factories, fixtures, and local test data to manual edits.
 * Never run destructive operations without explicit confirmation, including `migrate:fresh`, `db:wipe`, `DROP`, `TRUNCATE`, and bulk `DELETE` or `UPDATE` statements.
-* Avoid unbounded or N+1 queries, unnecessary round trips, and oversized results.
-* Use transactions or established concurrency controls for atomic multi-step writes.
+* Use parameterized queries. Avoid unbounded or N+1 queries, repeated round trips, unused columns, and inefficient scans; inspect access patterns before optimizing.
+* Use transactions or concurrency controls as needed for multi-step or concurrent writes; handle retries or duplicate delivery idempotently where repeated effects matter.
 
 ## Migration Rules
 
 * In an established project, create a new migration instead of editing history. Edit an old migration only in clearly early development with user approval.
-* Make migrations reversible when possible; review rollback behavior, defaults, nullability, indexes, foreign keys, and existing-data compatibility.
+* Review existing-data compatibility, defaults, nullability, keys, indexes, backfills, and locking risk. Make migrations reversible when possible; explain irreversible data loss and rollback limits. Applying them still requires user approval.
 
 ## Backend Security
 
 * Verify webhook signatures and replay protections using the established approach when present, or the provider/framework-supported secure approach for a new integration.
+* Prefer framework security mechanisms and context-appropriate output encoding over custom security code.
 
 ## Server Configuration
 

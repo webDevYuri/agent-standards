@@ -11,62 +11,37 @@
 
 ## Core Principles
 
-### Delete Before Adding
+### Read Before Writing
 
-* Remove, simplify, consolidate, or replace unnecessary code before adding more. Remove obsolete compatibility layers, helpers, and abstractions, but keep working behavior and compatibility required by the current scope.
-
-### Reuse Before Creating
-
-* Find and reuse a suitable existing implementation, utility, service, component, middleware, validator, type, pattern, or convention.
-* Do not force unrelated, unsafe, or confusing coupling.
-
-### Extend Before Abstracting
-
-* Extend an established pattern before adding an abstraction.
-* Add wrappers, factories, base classes, generic helpers, or framework-like layers only for current duplication or demonstrated structural need, never a single or hypothetical use case.
-
-### Solve the Current Requirement
-
-* Implement only the current requirement. Do not add speculative features, configuration, extensibility, fallback behavior, future-proofing, or adjacent improvements.
+* Establish the requirement and expected behavior; inspect relevant architecture, conventions, constraints, and data flow before editing.
+* Distinguish observed facts, user requirements, inferences, and assumptions. Resolve uncertainty from available context; ask only for material unresolved ambiguity or required permission. Proceed on safe, reversible choices within scope.
 
 ### Prefer the Simplest Correct Solution
 
-* Choose the correct solution that is easiest to understand, verify, and maintain.
-* Prefer explicit, conventional code; avoid unnecessary files, layers, indirection, dependencies, moving parts, duplication, and obvious inefficiency.
+* Satisfy known requirements with clear, secure, testable code whose maintenance cost is justified. Avoid speculative features, configuration, fallback behavior, infrastructure, and extensibility.
+* Use the existing stack. Optimize for measured problems, predictable high-impact risks, or obvious inefficiency.
 
-### Every Addition Has a Cost
+### Reuse Before Creating
 
-* Add lines, files, abstractions, dependencies, configuration, or integrations only when the current requirement justifies their maintenance cost.
-* Use the existing stack when it can reasonably provide the needed behavior.
-
-### Read Before Writing
-
-* Read enough relevant requirements, code, architecture, conventions, and data flow to avoid assumptions and make a safe change.
-* Ask before proceeding when uncertainty creates risk or could materially change the result.
+* Reuse suitable implementations and extend established patterns without forcing unsafe or confusing coupling.
+* Add abstractions or layers only for demonstrated complexity, meaningful reuse, or a responsibility boundary, including a justified single use. Keep responsibilities cohesive and dependencies clear.
 
 ### Preserve Existing Behavior
 
-* Preserve behavior outside the request; do not rewrite working code because another approach appears cleaner.
-* Avoid unrelated cleanup, renaming, formatting, restructuring, or modernization. Keep diffs focused and reviewable.
-* Leave the touched area clean: remove unused imports, temporary or debug artifacts, commented-out code, and code or files made obsolete by the current change. Do not remove unrelated pre-existing dead code unless requested.
-
-### Refactor Only When It Helps the Task
-
-* Refactor only when required for a safe implementation or to remove an immediate problem.
-* Do not turn feature or bug-fix work into a broad refactor; separate optional cleanup from behavioral changes when practical.
+* Keep diffs focused; preserve required compatibility and behavior outside the request. Refactor only to implement safely or resolve an immediate task-related problem.
+* Simplify or remove what the current change makes obsolete, including unused imports and temporary artifacts; obey root deletion permissions. Leave unrelated cleanup, renaming, formatting, and modernization alone.
 
 ### Consistency Over Personal Preference
 
-* Follow established architecture, naming, folders, error handling, validation, and coding conventions rather than personal preference.
-* Keep files cohesive and place new files within the established folder structure; do not create duplicate, catch-all, or one-off structures without a current need.
-* In a new or mostly empty project, use simple, widely understood conventions and add only foundations needed now; keep early choices easy to extend or replace.
-* If an established pattern is unsafe or unsuitable, explain why and make the smallest justified correction.
+* Follow established architecture, naming, folders, validation, and error handling. Keep files cohesive; avoid duplicate or catch-all structures.
+* In new projects, use conventional foundations needed now. If an existing pattern is unsafe or unsuitable, explain why and make the smallest justified correction.
+* Prefer predictable, readable code and descriptive names. Comment non-obvious intent, constraints, business rules, or tradeoffs; avoid narration and unnecessary documentation.
 
-### Prefer Predictable Code
+### Verify and Stop
 
-* Prefer conventional, readable code over clever or compressed code.
-* Use descriptive names; abbreviate only when standard and unambiguous.
-* Comment only non-obvious intent, constraints, or tradeoffs. Do not narrate clear code.
+* Verify behavior and important boundaries with existing tests and configured local checks, scaled to risk; use stronger coverage for permissions, money, persistence, migrations, and critical workflows. Complete required checks and routed verification.
+* Fix failures caused by the change; report unrelated failures, blockers, and unverified behavior. Never claim unexecuted checks or unobserved behavior passed.
+* Stop when the requested behavior and required verification are complete; do not add adjacent improvements.
 
 ## Context-First Investigation
 
@@ -87,7 +62,8 @@
 
 ## Debugging and Verification
 
-* Identify the cause before changing code; prefer a targeted fix over trial-and-error or broad rewrites.
-* Remove temporary logs unless they provide lasting value.
-* Run relevant configured local checks.
-* Never claim unexecuted checks or unobserved behavior passed.
+* Compare expected and observed behavior; reproduce the smallest practical failure before fixing it.
+* Trace the relevant input, validation, business logic, persistence, response/state, and presentation until evidence identifies the responsible layer. Scale investigation to uncertainty; obvious bugs need no architectural survey.
+* Correct the cause at that layer instead of hiding symptoms downstream. Revert ineffective attempts or regressions before another approach, preserving unrelated work.
+* Rerun the reproduction and meaningful nearby regression checks. If exact reproduction is impractical, use the smallest check that demonstrates corrected behavior and disclose the limit.
+* Remove temporary diagnostics unless they provide lasting value; follow Core verification and stop criteria.

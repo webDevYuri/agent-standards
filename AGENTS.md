@@ -4,24 +4,23 @@
 
 ## Purpose
 
-These rules apply to every task. Prioritize correctness, security, permissions, maintainability, and preservation of user work.
+These rules apply to every task. Satisfy the actual requirement within correctness, security, permission, and user-work boundaries; then favor existing conventions, simplicity, maintainability, and usability. Optimize for evidenced needs.
 
 ## Instruction Routing
 
-Read this file for every task. Classify the request and affected paths, then load only the linked sections that apply. Token efficiency never overrides correctness, security, permissions, production or data safety, or preservation of user work.
+Read this file for every task, then only applicable linked sections. Token efficiency never overrides safety or correctness.
 
 * **Implementation, maintenance, or refactoring:** Read engineering [Core Principles](agent-guides/engineering.md#core-principles).
-* **User-provided files, snippets, or exact paths:** Start there. Load [Context-First Investigation](agent-guides/engineering.md#context-first-investigation) only if that context is insufficient.
-* **Optional project access:** Read [Agent Access](agent-guides/access.md) only when a task requires a capability it controls. A missing file, missing setting, or any value other than literal `on` means `off`. If the required access is off or not recognized, guide the developer to set the exact setting to `on` and reload the IDE/session before continuing.
-* **Unknown files or insufficient context:** Read [Context-First Investigation](agent-guides/engineering.md#context-first-investigation).
-* **Application URL supplied instead of files:** Read [URL-Driven Route Discovery](agent-guides/engineering.md#url-driven-route-discovery); add investigation guidance only if targeted route discovery fails.
-* **Debugging:** Read engineering [Core Principles](agent-guides/engineering.md#core-principles) and [Debugging and Verification](agent-guides/engineering.md#debugging-and-verification); add investigation guidance only when needed.
-* **Backend:** Use backend [Section Routing](agent-guides/backend.md#section-routing) for APIs, authentication, authorization, validation, databases, transactions, migrations, queues, jobs, integrations, or server configuration. Load only matched headings.
-* **Frontend:** Use frontend [Section Routing](agent-guides/frontend.md#section-routing) for components, state, data fetching, rendering, browser behavior, or framework code. Load only matched headings.
-* **Visual or UX:** Use frontend [Section Routing](agent-guides/frontend.md#section-routing) and UI/UX [Section Routing](agent-guides/uiux-ds.md#section-routing) for layout, styling, usability, responsive behavior, presentation, interaction states, forms, tables, navigation, typography, accessibility, or animation. Do not load UI/UX guidance for non-visual frontend work.
-* **API verification:** Use testing [Section Routing](agent-guides/testing.md#section-routing) for new endpoints, endpoint bugs, endpoint runtime, authentication, authorization, validation, database writes, statuses, response shapes, or explicit endpoint verification. Do not load it for unrelated backend work or strictly non-behavioral endpoint changes.
+* **Investigation:** Start with supplied files, snippets, or paths. Use [Context-First Investigation](agent-guides/engineering.md#context-first-investigation) only when context is insufficient.
+* **Optional project access:** Read [Agent Access](agent-guides/access.md) only for a needed capability. Only one exact setting with literal `on` grants access; missing, duplicate, or invalid settings mean off. If off, guide the developer to enable that setting and reload the IDE/session before using the capability.
+* **Application URL:** Read [URL-Driven Route Discovery](agent-guides/engineering.md#url-driven-route-discovery); add investigation guidance only if targeted lookup fails.
+* **Debugging:** Read [Core Principles](agent-guides/engineering.md#core-principles) and [Debugging and Verification](agent-guides/engineering.md#debugging-and-verification).
+* **Backend:** Follow [Section Routing](agent-guides/backend.md#section-routing) for APIs, security, data, jobs, integrations, or server configuration.
+* **Frontend:** Follow [Section Routing](agent-guides/frontend.md#section-routing) for components, state, fetching, rendering, browser behavior, or framework code.
+* **Visual or UX:** Use frontend routing and UI/UX [Section Routing](agent-guides/uiux-ds.md#section-routing) for presentation, usability, forms, navigation, responsiveness, accessibility, or motion. Skip UI/UX for non-visual frontend work.
+* **API verification:** Follow testing [Section Routing](agent-guides/testing.md#section-routing) for new endpoints, bugs, runtime changes, or explicit verification; skip unrelated backend and strictly non-behavioral changes.
 
-If scope expands, load only newly relevant sections before continuing. Do not reopen unchanged instructions still available in context. For mixed, uncertain, security-sensitive, broad-audit, or architectural work, load the broader relevant sections or complete guides only when scope cannot be narrowed safely. Higher-priority and stricter rules win; ask when the safe interpretation is unclear.
+Load newly relevant sections as scope expands; do not reread unchanged instructions in context. For mixed, uncertain, security-sensitive, or broad work, expand coverage when it cannot be narrowed safely. Higher-priority instructions win; within them, apply the stricter rule. Ask if the safe interpretation remains unclear.
 
 ## Scope and User Work Protection
 

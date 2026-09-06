@@ -4,8 +4,8 @@
 
 ## Section Routing
 
-* **New screen or redesign:** [Understand the Product Before Designing](#understand-the-product-before-designing), [Existing Design System First](#existing-design-system-first), [Layout and Visual Hierarchy](#layout-and-visual-hierarchy), [Typography](#typography), [Spacing and Alignment](#spacing-and-alignment), [Color, Borders, Radius, and Effects](#color-borders-radius-and-effects), [Components and Content](#components-and-content), [Interaction States](#interaction-states), [Responsive Design](#responsive-design), [Accessibility](#accessibility), [AI-Slop Prevention](#ai-slop-prevention), and [Final Design Review](#final-design-review). Add forms or motion sections only when relevant.
-* **Existing component styling:** [Existing Design System First](#existing-design-system-first), [Spacing and Alignment](#spacing-and-alignment), [Color, Borders, Radius, and Effects](#color-borders-radius-and-effects), [Interaction States](#interaction-states), and [Final Design Review](#final-design-review); add responsive guidance when affected.
+* **New screen or redesign:** Read all sections below, adding forms and motion only when relevant.
+* **Existing component styling:** [Existing Design System First](#existing-design-system-first), [Spacing and Alignment](#spacing-and-alignment), [Color, Borders, Radius, and Effects](#color-borders-radius-and-effects), [Interaction States](#interaction-states), [Accessibility](#accessibility), and [Final Design Review](#final-design-review); add typography or responsive guidance when affected.
 * **Forms, tables, dashboards, or data-dense UI:** [Existing Design System First](#existing-design-system-first), [Forms and Data-Dense Interfaces](#forms-and-data-dense-interfaces), [Interaction States](#interaction-states), [Responsive Design](#responsive-design), [Accessibility](#accessibility), and [Final Design Review](#final-design-review).
 * **Responsive or accessibility fix:** The directly relevant [Responsive Design](#responsive-design), [Accessibility](#accessibility), and affected [Interaction States](#interaction-states), then [Final Design Review](#final-design-review).
 * **Animation or feedback:** [Interaction States](#interaction-states), [Motion and Feedback](#motion-and-feedback), [Accessibility](#accessibility), and [Final Design Review](#final-design-review).
@@ -13,44 +13,32 @@
 
 ## Understand the Product Before Designing
 
-* Design every screen and section—including landing-page heroes—from the actual product, audience, available workspace context, screen purpose, and primary task. Its structure, copy, visuals, and calls to action must make sense for that product, not a generic template or trend showcase.
-* Inspect surrounding screens, branding, design language, components, installed libraries, typography, spacing and color tokens, and interaction patterns.
-* Match established patterns; do not make an isolated screen feel unrelated. In a new project, derive direction from the brief and add only foundations needed now.
-* Treat these as firm defaults; deviate only for a clear brand, requirement, design-system, or usability reason.
+* Start from the actual product, audience, task, context, and likely errors. Make needed information and the next action discoverable; minimize unnecessary decisions and effort without hiding consequences.
+* Match familiar product flows and language. Use recognition over recall; reveal secondary detail when needed without hiding essential controls. Adapt to user experience only where justified.
+* Treat psychology as contextual hypotheses, not guaranteed conversion tactics. Preserve informed choices, honest progress, and easy refusal or cancellation; never use deception or obstructive defaults.
+* These are design defaults, not a visual style. Deviate for a clear product, brand, accessibility, or usability reason; in new projects, add only foundations needed now.
 
 ## Existing Design System First
 
-Use this priority order:
-
-1. Existing project-specific components.
-2. Installed libraries such as shadcn/ui, DaisyUI, Radix-based systems, internal libraries, or framework UI systems.
-3. Existing tokens, variants, and utility classes.
-4. Composition or extension of existing components.
-5. Custom UI only when existing options are genuinely unavailable or unsuitable.
-
-* Prefer components that already handle accessibility, states, keyboard behavior, and responsiveness, but do not force awkward use that harms UX.
-* Do not recreate common buttons, dialogs, dropdowns, inputs, tabs, tables, tooltips, sheets, or alerts when a suitable component exists.
-* Do not install or replace a UI library without permission.
-* Keep styling within the design system; avoid arbitrary colors, fonts, spacing, icons, and components.
+* Inspect surrounding screens, branding, components, installed libraries, tokens, and interaction patterns before styling.
+* Prefer project components, then suitable installed libraries, existing tokens/variants, and composition or extension; use custom UI only when these are unsuitable. Reuse accessible state and keyboard behavior without forcing awkward UX.
+* Do not install or replace a UI library without permission. Keep styling within the existing system.
 
 ## Layout and Visual Hierarchy
 
-* Establish one clear primary action or focal point, intentional content order, obvious grouping, and a natural reading path based on the information architecture.
+* Establish clear action priority and information order for the current task; use grouping and a reading path appropriate to content and locale.
 * Keep labels, help, controls, and actions near what they affect. Distinguish primary, secondary, and destructive actions.
-* Use consistent alignment and purposeful whitespace.
-* Avoid universal centering, equal emphasis, excessive emptiness, cramped density, oversized heroes that bury useful content, or decoration that weakens usability.
+* Use whitespace to separate groups while keeping related content close. Avoid equal emphasis, universal centering, cramped or excessive spacing, and heroes that bury useful content.
 
 ## Typography
 
-* Use a small, consistent set of roles for headings, labels, body, support text, and metadata.
-* Keep line length, size, and line height readable; communicate hierarchy through typography, not color alone.
-* Avoid generic oversized headings, excessive weights or sizes, centered long-form text, low contrast, uppercase blocks, and typography that conflicts with product identity.
+* Use consistent roles for headings, body, labels, help, and metadata. Keep size, line length, and line height readable; communicate hierarchy beyond color.
+* Avoid oversized headings, excessive weights, centered long text, low contrast, and uppercase blocks that impair reading or conflict with product identity.
 
 ## Spacing and Alignment
 
-* Use the established spacing scale: consistent gaps within groups, larger separation between groups, and deliberate vertical rhythm.
-* Share alignment lines, container widths, and page gutters across related content.
-* Avoid arbitrary values, small label/icon/field/button misalignments, inconsistent component padding, and wrappers that compensate for poor spacing.
+* Use the established spacing scale, consistent padding, shared alignment lines, container widths, and page gutters. Keep within-group gaps smaller than between-group gaps.
+* Fix alignment and spacing directly instead of adding compensating wrappers.
 
 ## Color, Borders, Radius, and Effects
 
@@ -60,58 +48,43 @@ Use this priority order:
 
 ## Components and Content
 
-* Build components for real product needs and reuse patterns for repeated behavior.
-* Keep density appropriate, labels clear, copy concise, and icon size and placement consistent.
-* Use icons only when informative and emojis only when the product intentionally does so.
-* Never present placeholders or invented content as real product data.
+* Keep density appropriate, labels clear, copy concise, and icons informative and consistent. Use emojis only when intentional to the product; label unfamiliar icon actions.
+* Never present placeholders, metrics, testimonials, activity, or social proof as real without evidence.
 
 ## Forms and Data-Dense Interfaces
 
-* Use visible labels, clear required or optional states, logical grouping, appropriate controls, and nearby actionable validation; never rely on placeholders as labels.
-* Keep forms concise and errors specific.
+* Use visible labels, required/optional cues, logical grouping, and nearby actionable errors; placeholders do not replace labels.
+* Ask only for necessary information not already known or safely derivable. Use accurate, editable defaults and controls suited to input, frequency, and precision; preserve paste and autofill.
+* Validate contextually and preserve input after recoverable failures. Client validation aids usability; server validation enforces rules.
 * Make tables readable and responsive. Provide useful empty states and clear search, filter, pagination, and bulk actions when relevant.
-* Do not hide important actions behind unclear icons or let decorative dashboards obscure data.
+* Keep data and actions legible; charts need meaningful labels, units, and comparisons without misleading scales or decorative clutter.
 
 ## Interaction States
 
-Handle every relevant default, hover, focus, active, selected, disabled, loading, success, empty, and error state. Prevent duplicate actions while loading when appropriate. Errors must explain what happened and what to do next.
+Handle relevant default, hover, focus, active, selected, disabled, loading, success, empty, and error states. Acknowledge actions and communicate processing, outcome, and next steps without redundant indicators for instant work. Prevent accidental duplicates; explain disabled actions and consequences when unclear. Prefer recoverable actions or undo when feasible; use confirmation for consequential mistakes.
 
 ## Responsive Design
 
-* Design small screens intentionally; preserve action priority instead of shrinking desktop layouts or hiding essential actions.
-* Use appropriate stacking, wrapping, collapsing, and intentional scrolling with touch-friendly controls, readable text, and usable forms.
-* Preserve logical reading, action, and keyboard order across rearrangement; avoid accidental overflow and excessively tall spacing.
-* When tools are available, review narrow, medium, and wide layouts rather than trusting breakpoints alone.
+* Preserve information and action priority on small screens through deliberate stacking, wrapping, collapsing, or scrolling; do not simply shrink desktop layouts or hide essential actions.
+* Keep text readable, controls touch-friendly, and reading/action/keyboard order logical. Check narrow, medium, and wide layouts when tools allow, including long content and zoom; avoid accidental overflow.
 
 ## Accessibility
 
-* Use semantic HTML and keyboard-operable controls with visible focus.
-* Provide correct accessible names and associations among labels, descriptions, and errors.
-* Preserve heading, reading, and focus order, including dialogs and dynamic views.
-* Maintain contrast and non-color state indicators. Use ARIA only when native semantics are insufficient and support reduced motion when motion is substantial.
+* Use semantic HTML, keyboard-operable controls, visible unobscured focus, and usable target sizes. Provide accessible names and label/help/error associations.
+* Preserve heading, reading, and focus order, including dialogs and dynamic views; announce meaningful status changes appropriately.
+* Maintain contrast and non-color state cues. Use ARIA only when native semantics are insufficient; respect reduced motion. Verify applicable accessibility requirements, not appearance alone.
 
 ## Motion and Feedback
 
-* Use restrained motion only to explain state, hierarchy, or continuity; avoid blanket load animation, excessive hover movement, slow transitions, and distraction.
+* Use motion to clarify state, hierarchy, or continuity; avoid distracting, blanket, or slow animation.
 * Give immediate feedback through the least disruptive pattern.
 * Put control-specific validation inline. Use toasts only for brief non-blocking status and modals only for required decisions, consequential confirmation, or acknowledgement.
 * Never put information requiring action only in a disappearing toast, interrupt routine actions with a modal, or add redundant success feedback.
 
 ## AI-Slop Prevention
 
-Do not default to generic SaaS heroes; oversized or gradient headlines; eyebrow pills above every heading; repeated three-card grids; excessive rounded cards; random glass panels, gradients, glows, blobs, patterns, or translucent surfaces; fake metrics, testimonials, activity, social proof, or logo rows; meaningless or excessive icons; decorative badges; generic startup copy; identical section treatment; copied landing templates; or unbranded dark purple/blue glowing themes.
-
-Use any such pattern only for a specific product, brand, content, or usability reason. The result must look designed for this product, not generated from a template.
+Every container, effect, badge, illustration, and text block should support product identity, hierarchy, comprehension, interaction, or feedback. Avoid template-driven heroes, repeated card grids, nested panels, competing accents, gradients/glows, excessive empty space, and redundant copy without that purpose. Choose dashboards, cards, inline editing, or dialogs for the task; none is a universal default. Improve weak structure instead of adding decoration.
 
 ## Final Design Review
 
-Before completion, confirm:
-
-* The primary action is clear and the interface matches the product.
-* Existing components and libraries were reused; no custom UI is unnecessary.
-* Hierarchy, spacing, typography, borders, radii, shadows, and effects are consistent and purposeful.
-* Relevant states, mobile usability, keyboard access, focus, and accessibility are complete.
-* No section feels generic, repetitive, template-like, or obviously AI-generated.
-* The result is production-ready, not merely impressive in a screenshot.
-
-Revise weak sections instead of adding decoration.
+Review the affected task flow with realistic content and relevant success, empty, loading, and failure states. Check discoverability, effort, recovery, visual consistency, responsive behavior, keyboard/focus access, and accessibility. Use available local browser/tools to verify interaction; a screenshot alone cannot prove usability. Correct unmet requirements, report unverified behavior, and stop when the task is satisfied.
