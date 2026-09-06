@@ -48,6 +48,7 @@
 
 * Preserve behavior outside the request; do not rewrite working code because another approach appears cleaner.
 * Avoid unrelated cleanup, renaming, formatting, restructuring, or modernization. Keep diffs focused and reviewable.
+* Leave the touched area clean: remove unused imports, temporary or debug artifacts, commented-out code, and code or files made obsolete by the current change. Do not remove unrelated pre-existing dead code unless requested.
 
 ### Refactor Only When It Helps the Task
 
@@ -57,6 +58,7 @@
 ### Consistency Over Personal Preference
 
 * Follow established architecture, naming, folders, error handling, validation, and coding conventions rather than personal preference.
+* Keep files cohesive and place new files within the established folder structure; do not create duplicate, catch-all, or one-off structures without a current need.
 * In a new or mostly empty project, use simple, widely understood conventions and add only foundations needed now; keep early choices easy to extend or replace.
 * If an established pattern is unsafe or unsuitable, explain why and make the smallest justified correction.
 

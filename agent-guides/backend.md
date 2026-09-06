@@ -60,8 +60,8 @@
 When a Postman collection exists, maintain it as part of the API; it supplements but never replaces [local endpoint verification](#api-endpoint-verification).
 
 * Update changed, added, renamed, or removed endpoints, including URLs, methods, headers, authorization, parameters, payloads, and examples.
-* Organize by resource or feature with descriptive scenario names, local sample fields, brief prerequisites, expected results, and minimal setup.
-* Match the contract: `form-data` for multipart or uploads, raw JSON for `application/json`, and URL encoding only when required. Let Postman generate multipart boundaries.
+* Organize by resource or feature with descriptive resource and scenario names. Keep each saved request easy to run with minimal manual editing: document brief prerequisites and expected results, use safe local sample values, and avoid hidden request-order dependencies unless the workflow requires sequencing.
+* Match the endpoint contract rather than personal preference: use `form-data` for multipart or uploads, raw JSON for `application/json`, and URL encoding only when required. Let Postman generate multipart boundaries.
 * Keep a happy path for each endpoint. Add focused auth, validation, or failure cases only when useful. Saved error or business-state examples must include expected status and full response payload with `message`, `code`, and relevant context; tests must assert status and `code`.
 * Use variables only for values that vary. Keep committed values empty or fake; never store credentials, tokens, personal data, or private URLs.
 * Keep scripts short and transparent; carry only necessary temporary sequence values and avoid automation that obscures manual testing.

@@ -13,7 +13,7 @@
 
 ## Understand the Product Before Designing
 
-* Design for the product, audience, screen purpose, and primary task—not decorative novelty or a trend showcase.
+* Design every screen and section—including landing-page heroes—from the actual product, audience, available workspace context, screen purpose, and primary task. Its structure, copy, visuals, and calls to action must make sense for that product, not a generic template or trend showcase.
 * Inspect surrounding screens, branding, design language, components, installed libraries, typography, spacing and color tokens, and interaction patterns.
 * Match established patterns; do not make an isolated screen feel unrelated. In a new project, derive direction from the brief and add only foundations needed now.
 * Treat these as firm defaults; deviate only for a clear brand, requirement, design-system, or usability reason.
