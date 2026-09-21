@@ -8,13 +8,15 @@ These rules apply to every task. Satisfy the actual requirement within correctne
 
 ## Instruction Routing
 
-Read this file for every task, then only applicable linked sections. Token efficiency never overrides safety or correctness.
+At the start of every new conversation, read this file first, recursively enumerate every file under `agent-guides/`, and read each of those guide files before acting. This initial pass is for recognizing the complete guide set and its instructions. Once the user’s task is understood, focus detailed reasoning and subsequent file access on the relevant guides and project files, while still applying any instruction discovered during the initial pass. The routing entries below identify the sections that are especially relevant, but they do not replace the required startup review of all `agent-guides` files. Token efficiency never overrides safety or correctness.
 
 * **Implementation, maintenance, or refactoring:** Read engineering [Core Principles](agent-guides/engineering.md#core-principles).
 * **Investigation:** Start with supplied files, snippets, or paths. Use [Context-First Investigation](agent-guides/engineering.md#context-first-investigation) only when context is insufficient.
 * **Optional project access:** Read [Agent Access](agent-guides/access.md) only for a needed capability. Only one exact setting with literal `on` grants access; missing, duplicate, or invalid settings mean off. If off, guide the developer to enable that setting and reload the IDE/session before using the capability.
 * **Application URL:** Read [URL-Driven Route Discovery](agent-guides/engineering.md#url-driven-route-discovery); add investigation guidance only if targeted lookup fails.
 * **Debugging:** Read [Core Principles](agent-guides/engineering.md#core-principles) and [Debugging and Verification](agent-guides/engineering.md#debugging-and-verification).
+* **Code style and formatting:** Follow [Code Style and Formatting](agent-guides/code-style.md) for new code and modified code blocks.
+* **New payment gateway integration:** Follow [Payment Gateway Integration](agent-guides/payments.md). Apply it only when implementing a new gateway; do not modify or audit an existing integration unless explicitly requested.
 * **Backend:** Follow [Section Routing](agent-guides/backend.md#section-routing) for APIs, security, data, jobs, integrations, or server configuration.
 * **Frontend:** Follow [Section Routing](agent-guides/frontend.md#section-routing) for components, state, fetching, rendering, browser behavior, or framework code.
 * **Visual or UX:** Use frontend routing and UI/UX [Section Routing](agent-guides/uiux-ds.md#section-routing) for presentation, usability, forms, navigation, responsiveness, accessibility, or motion. Skip UI/UX for non-visual frontend work.

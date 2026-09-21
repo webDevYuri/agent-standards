@@ -16,10 +16,25 @@
 * Establish the requirement and expected behavior; inspect relevant architecture, conventions, constraints, and data flow before editing.
 * Distinguish observed facts, user requirements, inferences, and assumptions. Resolve uncertainty from available context; ask only for material unresolved ambiguity or required permission. Proceed on safe, reversible choices within scope.
 
+### Constructive Technical Judgment
+
+* Do not agree with a proposed change automatically. Evaluate it against the requirements, existing architecture, correctness, security, maintainability, and user impact.
+* If a proposed approach is risky, misleading, unnecessarily complex, or less correct than an available alternative, say so clearly before implementing it.
+* When disagreeing, explain the specific concern, relevant tradeoffs, and a practical alternative. Do not reject an idea without giving the reasoning that supports the recommendation.
+* Follow the user’s decision when it is safe and within scope, but do not hide material risks or present a weak approach as technically correct.
+
 ### Prefer the Simplest Correct Solution
 
-* Satisfy known requirements with clear, secure, testable code whose maintenance cost is justified. Avoid speculative features, configuration, fallback behavior, infrastructure, and extensibility.
+* Satisfy known requirements with clear, secure, testable code whose maintenance cost is justified. Avoid speculative features, configuration, fallback behavior, infrastructure, and extensibility. Never add a fallback merely to suppress an error or make missing data look complete.
 * Use the existing stack. Optimize for measured problems, predictable high-impact risks, or obvious inefficiency.
+
+### Preserve Meaningful Data
+
+* Treat missing, `null`, zero, empty, unknown, and invalid values as distinct states unless the requirements explicitly define them as equivalent.
+* Do not add a fallback by default. If a value is missing and no explicit fallback requirement exists, preserve and expose the missing state so it can be discovered and resolved rather than silently masking it.
+* Do not silently substitute a value from another column, field, record, or source when the intended value is missing. Surface the missing value clearly and wait for an explicit requirement before adding a fallback or substitute.
+* For reporting, inventory, statistics, financial values, identifiers, statuses, and other business-critical data, preserve the authoritative source of truth. Surface missing or invalid data explicitly, or fail clearly when continuing would produce a misleading result.
+* Do not replace missing business data with guessed values, zeroes, empty strings, generic defaults, or values from a semantically different field merely to keep the UI or calculation working.
 
 ### Reuse Before Creating
 
