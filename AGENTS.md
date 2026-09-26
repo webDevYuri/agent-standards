@@ -8,7 +8,7 @@ These rules apply to every task. Satisfy the actual requirement within correctne
 
 ## Instruction Routing
 
-At the start of every new conversation, read this file first, recursively enumerate every file under `agent-guides/`, and read each of those guide files before acting. This initial pass is for recognizing the complete guide set and its instructions. Once the user’s task is understood, focus detailed reasoning and subsequent file access on the relevant guides and project files, while still applying any instruction discovered during the initial pass. The routing entries below identify the sections that are especially relevant, but they do not replace the required startup review of all `agent-guides` files. Token efficiency never overrides safety or correctness.
+At the start of every new conversation, read this file in full. Use the routing below to load only task-relevant guides before acting; do not enumerate or read all guides by default. For a guide with Section Routing, read that section first, then the applicable sections and their required references. Read a guide without section routing in full when relevant. Global rules below apply regardless of which guides are loaded. Token efficiency never overrides safety or correctness.
 
 * **Implementation, maintenance, or refactoring:** Read engineering [Core Principles](agent-guides/engineering.md#core-principles).
 * **Investigation:** Start with supplied files, snippets, or paths. Use [Context-First Investigation](agent-guides/engineering.md#context-first-investigation) only when context is insufficient.
