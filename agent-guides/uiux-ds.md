@@ -24,6 +24,30 @@ Use the project-local Impeccable skill at `.agents/skills/impeccable/` as the pr
 
 Combine commands only when their purposes are distinct (for example, `critique` + `layout` + `polish`). Ask once when two commands are equally plausible. Treat a redesign as a replacement visual direction, not incremental polish; treat a focused refinement as preservation of the incumbent identity and behavior.
 
+## Post-Implementation Refinement
+
+For new pages, major redesigns, or substantial visual changes, do not treat the first completed implementation as the final design.
+
+After the initial implementation:
+
+1. Render and inspect the actual result at representative desktop and mobile viewport sizes. Review the rendered interface rather than judging from source code alone.
+
+2. Perform a critical UI/UX evaluation of the complete result as an experienced product designer reviewing work before production handoff. Judge what is actually visible and usable, not what the implementation intended to achieve.
+
+3. Identify meaningful weaknesses in the current result. Consider the interface holistically, including visual and information hierarchy, typography, readability, composition, spacing and rhythm, density, content presentation, imagery, consistency, interaction clarity, responsive adaptation, accessibility, and the effectiveness of the primary user journey. These are review dimensions, not a requirement to find a problem in every category.
+
+4. Preserve successful decisions. Distinguish between intentional design choices and actual weaknesses. Do not redesign a strong direction merely to produce a different result, and do not invent issues to justify another iteration.
+
+5. Convert the observed weaknesses into concise, evidence-based refinement feedback. Describe the problems and their effect on the experience without prescribing arbitrary visual solutions unless the solution is required by functionality, accessibility, or an explicit requirement.
+
+6. Perform one focused refinement pass based on that feedback. Use only the Impeccable commands relevant to the findings. Improve the existing direction rather than restarting it unless the evaluation reveals a fundamental failure.
+
+7. Render and inspect the refined result again at the affected viewport sizes, then continue to the applicable final review and verification.
+
+The refinement pass is mandatory for substantial UI work when meaningful visual evaluation is possible. It is not required for minor styling fixes, narrowly scoped adjustments, or non-visual frontend work.
+
+Limit this automatic refinement process to one pass. If the first implementation already withstands critical review and no meaningful improvement is identified, make no arbitrary changes and proceed to final verification.
+
 ## Project-Level Constraints
 
 - Preserve existing functionality and product truth: actions, state, validation, API contracts, navigation, permissions, and loading/empty/error/success states.
