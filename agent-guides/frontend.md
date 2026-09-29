@@ -78,4 +78,4 @@
 
 ## Verification
 
-Run relevant unit, component, integration, end-to-end, type, lint, and local-build checks. For frontend API work, verify affected UI success and failure behavior against a clearly local API or the project's established test setup. For visual work, complete the UI/UX [Final Design Review](uiux-ds.md#final-design-review).
+Run relevant unit, component, integration, end-to-end, type, lint, and local-build checks. For frontend API work, verify affected UI success and failure behavior against a clearly local API or the project's established test setup. For visual work, follow the UI/UX [Section Routing](uiux-ds.md#section-routing) review commands.
