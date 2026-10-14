@@ -9,6 +9,7 @@
 * **Authentication, authorization, ownership, or privileged behavior:** [Authentication and Authorization](#authentication-and-authorization) and, when relevant, [Backend Security](#backend-security).
 * **Input, upload, error, or abuse protection:** [Validation, Errors, and Abuse Protection](#validation-errors-and-abuse-protection).
 * **New endpoint, endpoint bug, or runtime change:** The relevant API sections and [API Endpoint Verification](#api-endpoint-verification); add [Postman Collection](#postman-collection) when one exists.
+* **New endpoint or requested endpoint security audit:** [Security Review](#security-review).
 * **Query, model, write, or transaction:** [Database Safety](#database-safety).
 * **Schema or migration:** [Domain and Schema Design](#domain-and-schema-design), [Database Safety](#database-safety), and [Migration Rules](#migration-rules).
 * **Webhook or server integration:** [Backend Security](#backend-security), plus relevant API sections when endpoint-facing.
@@ -48,6 +49,12 @@
 * Validate used parameters, fields, headers, and uploads at boundaries; allowlist writable fields and rate-limit abuse-prone operations.
 * Validate upload type, size, and storage; constrain redirects or outbound destinations when user-controlled.
 * Handle missing records, invalid input, unauthorized access, duplicates, expired tokens, and upstream failures safely through the project’s error format.
+
+### Security Review
+
+* Review every new endpoint before handoff; review existing endpoints when explicitly requested. Inspect the endpoint and directly relevant code for applicable authentication, authorization, ownership/tenant checks, input validation, unsafe queries, sensitive-data exposure, and abuse risks.
+* No additional automated security tests or scanning tools are required. Existing endpoint verification requirements still apply.
+* Report findings with the affected file/line, issue, impact, and recommended fix. If none are found, report "Security review passed: no issues found in the reviewed code." Disclose incomplete reviews and unverified assumptions; do not claim the endpoint is vulnerability-free.
 
 ## API Endpoint Verification
 

@@ -18,11 +18,15 @@ At the start of every new conversation, read this file in full. Use the routing 
 * **Code style and formatting:** Follow [Code Style and Formatting](agent-guides/code-style.md) for new code and modified code blocks.
 * **New payment gateway integration:** Follow [Payment Gateway Integration](agent-guides/payments.md). Apply it only when implementing a new gateway; do not modify or audit an existing integration unless explicitly requested.
 * **Backend:** Follow [Section Routing](agent-guides/backend.md#section-routing) for APIs, security, data, jobs, integrations, or server configuration.
+* **New endpoint or requested endpoint security audit:** Follow backend [Security Review](agent-guides/backend.md#security-review).
 * **Frontend:** Follow [Section Routing](agent-guides/frontend.md#section-routing) for components, state, fetching, rendering, browser behavior, or framework code.
 * **Visual or UX:** Use frontend routing and UI/UX [Section Routing](agent-guides/uiux-ds.md#section-routing) for presentation, usability, forms, navigation, responsiveness, accessibility, or motion. Skip UI/UX for non-visual frontend work. Before using Impeccable, check whether the project-local setup is complete; if it is not fully set up, ask the user whether they want Impeccable installed/configured fully, and do not install or configure it until they explicitly confirm.
 * **API verification:** Follow testing [Section Routing](agent-guides/testing.md#section-routing) for new endpoints, bugs, runtime changes, or explicit verification; skip unrelated backend and strictly non-behavioral changes.
+* **Impeccable updates:** Check upstream changes when explicitly requested, when setup or compatibility issues occur, or when the task needs guidance missing from the installed version. Compare relevant changes with the local setup and report whether an update is needed. Preserve project customizations; do not update installed skills or project configuration without explicit user approval. Routine UI tasks do not require an update check.
 
 Load newly relevant sections as scope expands; do not reread unchanged instructions in context. For mixed, uncertain, security-sensitive, or broad work, expand coverage when it cannot be narrowed safely. Higher-priority instructions win; within them, apply the stricter rule. Ask if the safe interpretation remains unclear.
+
+* **Task planning:** Use a brief checklist of applicable guides, skills, and required actions for tasks with multiple steps, cross-cutting concerns, or security risks—for example, creating an endpoint, connecting frontend and backend behavior, or auditing vulnerabilities. Complete the required actions before handoff or report blockers. Apply relevant instructions directly without a separate checklist for simple, low-risk tasks—for example, fixing a typo, changing a label, explaining code, or locating a function. Judge by complexity and risk, not edit size. Reassess if scope expands; mandatory rules always apply.
 
 ## Scope and User Work Protection
 
