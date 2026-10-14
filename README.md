@@ -22,15 +22,16 @@ The goal is to help coding agents produce safer, simpler, more maintainable, and
 - `agent-guides/engineering.md` — Universal engineering principles and investigation rules
 - `agent-guides/backend.md` — Backend-specific development standards
 - `agent-guides/frontend.md` — Frontend-specific development standards
-- `agent-guides/uiux-ds.md` — UI/UX design standards and AI-slop prevention
+- `agent-guides/uiux-ds.md` — UI/UX routing through the bundled Impeccable skill
 - `agent-guides/testing.md` — Local API endpoint verification rules
 - `agent-guides/code-style.md` — Readability and scoped formatting rules
 - `agent-guides/payments.md` — New payment integration safety checklist
 - `agent-guides/access.md` — Project-local access opt-ins
+- `.agents/skills/impeccable/` — Bundled UI/UX skill, references, agent definitions, and launchers
 
 ## Usage
 
-Copy the files into the root of your project while preserving the existing folder structure.
+Copy all files into the root of your project while preserving the folder structure, including the hidden `.agents/` folder. Review `agent-guides/access.md` before use: this bundle currently sets `env_file_read: on`, permitting task-relevant reading of project-local environment files. It does not authorize editing or exposing secrets.
 
 Your coding agent should read `AGENTS.md` first. It will route the agent to the relevant guide and sections based on the current task.
 
@@ -40,14 +41,16 @@ Read global rules in full, then only the routed guides and sections. Follow thei
 
 | Task | Relevant guidance |
 |------|-------------------|
-| Small styling fix | Engineering core, code style, affected frontend sections, UI/UX baseline and affected visual sections |
-| New dashboard | Engineering core, code style, affected frontend sections, UI/UX screen design and data guidance |
-| Form redesign | Engineering core, code style, affected frontend sections, UI/UX baseline, forms, states, responsiveness, and accessibility |
+| Small styling fix | Engineering core, code style, affected frontend sections, UI/UX routing and the relevant Impeccable refinement command |
+| New dashboard | Engineering core, code style, affected frontend sections, UI/UX routing and Impeccable's new-work workflow |
+| Form redesign | Engineering core, code style, affected frontend sections, UI/UX routing and the relevant Impeccable design and review commands |
 | Backend-only change | Engineering core, code style, affected backend sections; local API verification when behavior changes |
 
 These examples are starting points; follow routing for additional concerns such as contracts, security, or payments. Compare required reading by word count when assessing efficiency; exact token usage depends on the agent, tokenizer, and task.
 
 ### UI/UX Workflow
+
+UI/UX work uses the project-local Impeccable skill in `.agents/skills/impeccable/`. Follow `agent-guides/uiux-ds.md` to select relevant commands. The launcher may download its runtime on first use; copying the bundle does not run it. Substantial visual work includes a design critique and one focused refinement pass when meaningful improvements are found.
 
 For new screens and meaningful redesigns: understand the user task, choose a coherent design direction, build with existing components and tokens, then review the affected flow locally. Small fixes need only relevant checks. Adapt to each product and brand rather than imposing one visual style.
 
